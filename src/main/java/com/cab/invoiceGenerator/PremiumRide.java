@@ -6,12 +6,12 @@ public class PremiumRide extends Ride{
     private static final double MINIMUM_FAIR = 20.00;
 
     public PremiumRide(double distanceInKm, int timeInMin) {
-        super(distanceInKm, timeInMin);
+        super(distanceInKm, timeInMin, RideType.PREMIUM);
     }
 
     @Override
     public double calculateFair() {
         double fair = (this.distance * COST_PER_KM)+(this.time * COST_PER_MINUTE);
-        return (fair > MINIMUM_FAIR)? fair : MINIMUM_FAIR;
+        return Math.max(fair, MINIMUM_FAIR);
     }
 }

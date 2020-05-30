@@ -11,6 +11,12 @@ public class InvoiceSummary {
         this.averageFair = (totalFair/totalRider);
     }
 
+    public InvoiceSummary(Invoice invoice) {
+        this.totalRider = invoice.user.getRides().size();
+        this.totalFair = invoice.calculateTotalFair();
+        this.averageFair = (totalFair/totalRider);
+    }
+
     @Override
     public boolean equals(Object o) {
         InvoiceSummary that = (InvoiceSummary) o;
