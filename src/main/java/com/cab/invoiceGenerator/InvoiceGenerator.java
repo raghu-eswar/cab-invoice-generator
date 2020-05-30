@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 public class InvoiceGenerator {
 
-    public double calculateFair(double distance, int time) {
-        return calculateFair(new Ride(distance,time));
+    public InvoiceSummary generateInvoice(double distance, int time) {
+        return generateInvoice(new Ride(distance, time));
     }
 
-    public double calculateFair(Ride ... rides) {
-        return Arrays.stream(rides)
-                     .map(Ride::calculateFair)
-                     .reduce(0.0, Double::sum);
+    public InvoiceSummary generateInvoice(Ride ... rides) {
+        Double fair = Arrays.stream(rides)
+                            .map(Ride::calculateFair)
+                            .reduce(0.0, Double::sum);
+        return new InvoiceSummary(rides.length, fair);
     }
 }
