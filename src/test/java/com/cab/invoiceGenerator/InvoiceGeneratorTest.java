@@ -24,4 +24,11 @@ public class InvoiceGeneratorTest {
         double fair = invoiceGenerator.calculateFair(0.3, 1);
         Assert.assertEquals(5, fair, 0.0);
     }
+
+    @Test
+    public void givenRideArray_shouldReturnCorrectFair() {
+        Ride[] rides = {new Ride(4 , 10), new Ride(3, 5),new Ride(5, 2)};
+        double fair = invoiceGenerator.calculateFair(rides);
+        Assert.assertEquals(137, fair, 0.0);
+    }
 }
