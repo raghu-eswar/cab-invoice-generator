@@ -18,4 +18,10 @@ public class InvoiceGeneratorTest {
         double fair = invoiceGenerator.calculateFair(2.2, 3);
         Assert.assertEquals(25, fair, 0.0);
     }
+
+     @Test
+    public void givenDistanceAAndTime_shouldReturnMinimumFair() {
+        double fair = invoiceGenerator.calculateFair(0.3, 1);
+        Assert.assertEquals(5, fair, 0.0);
+    }
 }
