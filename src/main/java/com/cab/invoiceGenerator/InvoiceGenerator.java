@@ -14,4 +14,8 @@ public class InvoiceGenerator {
                             .reduce(0.0, Double::sum);
         return new InvoiceSummary(rides.length, fair);
     }
+
+    public InvoiceSummary generateInvoice(User user) {
+        return generateInvoice(user.getRides().toArray(Ride[]::new));
+    }
 }
