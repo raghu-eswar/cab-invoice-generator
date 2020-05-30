@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class InvoiceGenerator {
 
     public InvoiceSummary generateInvoice(double distance, int time) {
-        return generateInvoice(new Ride(distance, time));
+        return generateInvoice(new NormalRide(distance, time));
     }
 
     public InvoiceSummary generateInvoice(Ride ... rides) {

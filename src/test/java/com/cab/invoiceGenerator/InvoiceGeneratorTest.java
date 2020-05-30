@@ -29,20 +29,32 @@ public class InvoiceGeneratorTest {
 
     @Test
     public void givenRideArray_shouldReturnCorrectSummary() {
-        Ride[] rides = {new Ride(4 , 10), new Ride(3, 5),new Ride(5, 2)};
+        Ride[] rides = {new NormalRide(4 , 10), new NormalRide(3, 5),new NormalRide(5, 2)};
         InvoiceSummary actualInvoiceSummary = invoiceGenerator.generateInvoice(rides);
         InvoiceSummary requiredInvoiceSummary = new InvoiceSummary(3, 137);
         Assert.assertEquals(requiredInvoiceSummary, actualInvoiceSummary);
     }
 
     @Test
-    public void forGivenUser_shouldReturnCorrectSummary() {
+    public void forGivenUser_withNormalRides_shouldReturnCorrectSummary() {
 
         User user = new User("raghu");
-        Ride[] rides = {new Ride(4 , 10), new Ride(3, 5),new Ride(5, 2)};
+        Ride[] rides = {new NormalRide(4 , 10), new NormalRide(3, 5),new NormalRide(5, 2)};
         user.addRides(rides);
         InvoiceSummary actualInvoiceSummary = invoiceGenerator.generateInvoice(user);
         InvoiceSummary requiredInvoiceSummary = new InvoiceSummary(3, 137);
+        Assert.assertEquals(requiredInvoiceSummary, actualInvoiceSummary);
+    }
+
+    @Test
+    public void forGivenUser_withPremiumRides_shouldReturnCorrectSummary() {
+
+        User user = new User("raghu");
+        Ride[] rides = {new PremiumRide(4 , 10), new NormalRide(3, 5),
+                        new PremiumRide(6 , 15),new NormalRide(5, 2)};
+        user.addRides(rides);
+        InvoiceSummary actualInvoiceSummary = invoiceGenerator.generateInvoice(user);
+        InvoiceSummary requiredInvoiceSummary = new InvoiceSummary(4, 287);
         Assert.assertEquals(requiredInvoiceSummary, actualInvoiceSummary);
     }
 }
